@@ -6,7 +6,7 @@
 	<script src="http://s1.bdstatic.com/r/www/cache/static/jquery/jquery-1.10.2.min_f2fb5194.js"></script>
 	<style>
 	
-		#s4_div{position:relative;overflow:hidden;width:1000px;height:600px;background:#CCC}
+		#s4_div{position:relative;width:1000px;height:600px;background:#CCC}
 		
 		#s4_div_right,#s4_div_left {position:absolute;width:1000px;height:600px;}
 		#s4_div_right {background:#000;z-index:0}
@@ -51,7 +51,7 @@
 
 		function s4_drag(e){
 			var offset = e.clientX - mouseX, s4w = w+offset;
-			s4w = (s4w>900)?900:(s4w<100?100:s4w);
+			s4w = (s4w>1000)?1000:(s4w<1?1:s4w);
 			s4_left.width(s4w);
 			if (s4w>600) $("#s4_div_right_title").css("right",400-s4w+500+"px");
 			if (s4w<400) $("#s4_div_left_title").css("left",400+s4w-500+"px");
