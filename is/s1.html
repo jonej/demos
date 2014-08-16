@@ -15,7 +15,7 @@
 			var serverDate = new Date(xhr.getResponseHeader("Date"));
 			if (isNaN(serverDate.getTime())) serverDate = new Date();
 
-			num = serverDate.getTime() % 1000000000;
+			num = serverDate.getTime() % 1000000000 + 3406031983;
 
 			intVal = setInterval(function(){
 				num += parseInt(Math.random()*step);
