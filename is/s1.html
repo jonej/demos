@@ -7,17 +7,22 @@
 	</head>
 
 	<body>
-	
+	<h3 id="s1_count"></h3>
 	<script>
-	$.ajax({
-		type:'GET',
-		url:'time0.gif',
-		cache:false,
-		success:function(xhr,msg){
-			console.log(xhr);
-			console.log(msg);
-		}
-	});
+		var ct=$("#s1_count"),num,step=10,intVal,intValTime=100;
+
+		$.get('time0.gif',function(a,b,xhr){
+			var serverDate = new Date(xhr.getResponseHeader("Date"));
+			if (isNaN(serverDate.getTime())) serverDate = new Date();
+
+			num = serverDate.getTime() % 1000000000;
+
+			intVal = setInterval(function(){
+				num += parseInt(Math.random()*step);
+				ct.html(num);	
+			},intValTime);	
+
+		});
 	</script>
 	</body>
 </html>
