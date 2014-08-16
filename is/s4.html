@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+	
+	<head>
+	<meta charset="utf-8">
+	<script src="http://s1.bdstatic.com/r/www/cache/static/jquery/jquery-1.10.2.min_f2fb5194.js"></script>
+	<style>
+	
+		#s4_div{position:relative;overflow:hidden;width:1000px;height:600px;background:#CCC}
+		
+		#s4_div_right,#s4_div_left {position:absolute;width:1000px;height:600px;}
+		#s4_div_right {background:#000;z-index:0}
+		#s4_div_left {width:500px;background:#F00;z-index:100}
+
+		#s4_div_left_title,#s4_div_right_title {position:absolute;overflow:hidden;width:100px;font-size:24px;background:#CCC}
+		#s4_div_left_title {left:300px;}
+		#s4_div_right_title {right:300px}
+		
+		#s4_div_handle {overflow:hidden;position:absolute;width:80px;height:80px;right:-40px;bottom:100px;z-index:400;background-color:#00F;cursor:pointer}
+	
+	
+	</style>
+	</head>
+
+	<body>
+	
+	<div id="s4_div">
+		<div id="s4_div_left">
+			<div id="s4_div_handle"></div>
+			<div id="s4_div_left_title">左标题</div>
+		</div>
+		<div id="s4_div_right">
+			<div id="s4_div_right_title">右标题</div>
+		</div>
+	</div>
+
+	<script>
+	~ function(){
+		var mouseX = 0,w = 500,s4_left=$("#s4_div_left");
+		
+		$("#s4_div_handle").mousedown(function(e){
+			mouseX = e.clientX;
+			w =  s4_left.width();
+			$(document).bind("mousemove",s4_drag);
+		
+		});
+
+		$(document).mouseup(function(){
+			$(document).unbind("mousemove",s4_drag);
+		});
+
+		function s4_drag(e){
+			var offset = e.clientX - mouseX, s4w = w+offset;
+			s4w = (s4w>900)?900:(s4w<100?100:s4w);
+			s4_left.width(s4w);
+			if (s4w>600) $("#s4_div_right_title").css("right",400-s4w+500+"px");
+			if (s4w<400) $("#s4_div_left_title").css("left",400+s4w-500+"px");
+		}
+	}();
+
+	</script>
+	
+	</body>
+
+</html>
