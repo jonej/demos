@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+	
+	<head>
+	<meta charset="utf-8">
+	<script src="http://s1.bdstatic.com/r/www/cache/static/jquery/jquery-1.10.2.min_f2fb5194.js"></script>
+	</head>
+
+	<body>
+	
+	<script>
+	$.ajax({
+		type:'GET',
+		url:'time0.gif',
+		cache:false,
+		success:function(xhr,msg){
+			console.log(xhr);
+			console.log(msg);
+		}
+	});
+	</script>
+	</body>
+</html>
