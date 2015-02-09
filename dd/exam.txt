@@ -1,15 +1,20 @@
-tion1 = {
-type:0,         //0 for text ,1 for image
+活动设计
+
+
+题目的数据结构：
+
+question1 = {
+	type:0,         //0 for text ,1 for image
 	 subject:"你知道我最喜欢吃的东西是什么吗？",
 	 options:[
 	 {label:"这个是选项1"},{label:"这个是选项2"},{label:"这个是选项3"},{label:"这个是选项4"}
 	 ],
-		 score:10,
-		 goal:3  //correct answer index
+	 score:10,
+	 goal:3  //correct answer index
 },
 
-	question1 = {
-type:1,         //0 for text ,1 for image
+question2 = {
+	type:1,         //0 for text ,1 for image
 	 subject:"你知道我最喜欢的女生是哪种类型吗？",
 	 options:[
 	 {label:"这个是选项1",pic:'img/main.png',desc:'这个是介绍的内容'},
@@ -23,7 +28,7 @@ type:1,         //0 for text ,1 for image
 
 
 examData = [];
-examData.push(question1,question2……);
+examData.	push(question1,question2……);
 
 
 
