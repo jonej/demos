@@ -1,0 +1,90 @@
+tion1 = {
+type:0,         //0 for text ,1 for image
+	 subject:"你知道我最喜欢吃的东西是什么吗？",
+	 options:[
+	 {label:"这个是选项1"},{label:"这个是选项2"},{label:"这个是选项3"},{label:"这个是选项4"}
+	 ],
+		 score:10,
+		 goal:3  //correct answer index
+},
+
+	question1 = {
+type:1,         //0 for text ,1 for image
+	 subject:"你知道我最喜欢的女生是哪种类型吗？",
+	 options:[
+	 {label:"这个是选项1",pic:'img/main.png',desc:'这个是介绍的内容'},
+	 {label:"这个是选项2",pic:'img/main.png',desc:'这个是介绍的内容'},
+	 {label:"这个是选项3",pic:'img/main.png',desc:'这个是介绍的内容'},
+	 {label:"这个是选项4",pic:'img/main.png',desc:'这个是介绍的内容'},
+	 ],
+	 score:10,
+	 goal:2  //correct answer index
+	};
+
+
+examData = [];
+examData.push(question1,question2……);
+
+
+
+
+
+表1：exam;     //存储用户出的题目
+
+exam_id     int     auto_increment,     //用户题目 id
+openid     varchar     ,     //用户id
+nick         varchar     ，    //用户昵称
+head          archer      ,     //用户头像
+exam_json     blob          //本套题的json 存储
+
+表2：exam_score     //存储用户的得分情况
+
+exam_id     int   ,     //用户题目 id
+openid     varchar     ,     //回答用户的id
+nick         varchar     ，    //回答用户的昵称
+head          archer      ,     //回答用户的头像
+score          blob        ，  //回答用户的得分
+
+
+DAO方法：
+
+//根据exam_id取的exam_json
+getExam(exam_id) {
+	select * from exam where exam_id = ;
+	return [exam_json,openid,nick,head]
+}
+
+//存储用户出的题目
+saveExam(exam_json,openid,nick,head,exam_json) {
+	insert into exam value(……);
+}
+
+//获取题目的得分排行榜
+getScore(exam_id){
+	select * from exam_score where exam_id =   order by score desc;
+	return scoreList;
+}
+
+//存储用户得分
+saveScore(exam_id,openid,nick,head,score){
+	insert into exam_score values(……….);
+}
+
+//根据用户的出的题目，产生题目大json数据
+generateExamJSON(examData,answers){
+	//example : answers = [10,4,7,2,3,4,6,7,2,1,2,10];     代表用户出题用户的选择
+	json = array();
+	for (i = 0;i<10;i++) {
+		question = examData[i];
+		answer = answers[i];
+
+		//shuffle question options , only left 4 options
+
+		json.push(question);       
+	}
+
+	return json_encode(json);
+}
+
+
+
