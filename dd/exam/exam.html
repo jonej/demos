@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+
+<meta charset="utf-8">		
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+
+
+<title>你懂我吗</title>
+
+
+<link rel="icon" href="http://a.diaox2.com/cms/diaodiao/assets/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" media="only screen and (min-device-width: 1280px)" type="text/css" href="http://c.diaox2.com/cms/diaodiao/assets/pc.css" />
+<link rel="stylesheet" media="only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2), only screen and (max-device-width: 1280px)" type="text/css" href="http://c.diaox2.com/cms/diaodiao/assets/phone.css" />
+
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<style>
+	section {width:100%;display:none}
+	section#s_0 {display:block}
+
+	.pager {width:100%;text-align:center}
+	.pager span {text-align:center;background:#eb467a;font-size:32px;width:40%;line-height:66px;height:66px;color:#FFF;margin:10px;display:inline-block;
+				-webkit-border-radius: 4px;
+				border-radius: 4px;
+	}
+
+	 span.pager_start {margin:20px;width:75%}
+
+	 span.pager_1 {width:85%}
+	
+	h1 {margin:30px}
+	ol.q_list_text {margin:30px}
+	ol.q_list_text li {line-height:66px;border-bottom:1px solid #e5e5e5;padding-left:52px}
+
+	ol.q_list_text li.q_list_noselect {background:url(img/t0.png) no-repeat left center}
+	ol.q_list_text li.q_list_select {background:url(img/t1.png) no-repeat left center}
+
+	div.q_list_image {width:100%;text-align:center}
+	div.q_list_imageitem {position:relative;display:inline-block;width:40%;margin:10px;border:1px solid #c3c3c3}
+	img.q_list_imageicon {position:absolute;top:10px;right:10px;}
+</style>
+
+
+</head>
+
+<body>
+
+<!-- 首页  -->
+<section id="s_0" data-index="0">
+</section>
+
+<!-- 第1题 -->
+<section id="s_1" data-index="1">
+</section>
+<!-- 第2题 -->
+<section id="s_2" data-index="2">
+</section>
+<!-- 第3题 -->
+<section id="s_3" data-index="3">
+</section>
+<!-- 第4题 -->
+<section id="s_4" data-index="4">
+</section>
+<!-- 第5题 -->
+<section id="s_5" data-index="5">
+</section>
+<!-- 第6题 -->
+<section id="s_6" data-index="6">
+</section>
+<!-- 第7题 -->
+<section id="s_7" data-index="7">
+</section>
+<!-- 第8题 -->
+<section id="s_8" data-index="8">
+</section>
+<!-- 第9题 -->
+<section id="s_9" data-index="9">
+</section>
+<!-- 第10题 -->
+<section id="s_10" data-index="10">
+</section>
+
+<!-- 尾页 -->
+<section id="s_100" data-index="100">
+</section>
+
+
+<script>
+
+	//题目数据
+	var examData = null;
+	//答案数据
+	var answerData = Array(10);
+	//用户信息
+	var userInfo = {
+		'nick':'张二蛋',
+		'face':''
+	};
+
+	/*
+		从服务器端读取题目数据JSON	
+	*/
+	function loadExamData(){
+		
+		/*
+			mockup data
+		*/
+		var demo1 = {
+				type:0,			//0 for text ,1 for image
+				subject:"你知道我最喜欢吃的东西是什么吗？",
+				options:[
+					{label:"这个是选项1"},{label:"这个是选项2"},{label:"这个是选项3"},{label:"这个是选项4"}
+				],
+				score:10,
+				goal:3	//correct answer index
+			},
+			demo2 = {
+				type:1,			//0 for text ,1 for image
+				subject:"你知道我最喜欢的女生是哪种类型吗？",
+				options:[
+					{label:"这个是选项1",pic:'img/main.png',desc:'这个是介绍的内容'},
+					{label:"这个是选项2",pic:'img/main.png',desc:'这个是介绍的内容'},
+					{label:"这个是选项3",pic:'img/main.png',desc:'这个是介绍的内容'},
+					{label:"这个是选项4",pic:'img/main.png',desc:'这个是介绍的内容'},
+				],
+				score:10,
+				goal:2	//correct answer index
+			};
+
+		examData = [];
+		examData.push(demo1,demo2,demo1,demo2,demo1,demo2,demo1,demo2,demo1,demo2);
+	
+	}
+	
+	loadExamData();
+	/*
+		计算改用户的得分
+	*/
+	function caculateScore(){
+		var sum = 0;
+
+		for (var i=0;i<10;i++) {
+			
+			if (answerData[i] == examData[i]['goal']) {
+				sum += parseInt(examData[i]['score']);
+			}
+		
+		}
+
+		saveScore();
+
+		$("#score").html('<h1>得分：'+sum+'</h1>');
+	}
+	
+	/*
+		得到用户得分排名
+	*/
+	function getScoreRank(){
+	}
+	
+	
+	/*
+		将本次得分存储到服务器
+	*/
+	function saveScore(){
+	}
+
+	/*
+		生成通用banner
+	*/
+	function getBanner(){
+		return '<div><a href="http://www.diaox2.com"><img src="img/banner.png" style="width:100%"></a></div>';
+	}
+
+
+
+	/*
+		生成通用进度条
+	*/
+	function getProgressBar(){
+	
+	}
+
+
+
+
+	/*
+		生成通用翻页按钮
+	*/
+	function getPager(index){
+		
+		var html = '<div class="pager">';
+
+		if (index==0) {
+			html = html 
+					+ '<span class="pager_start" onclick="javascript:showSection(1)">开始答题</span>';
+		
+		}else if (index==1) {
+			html = html 
+					+ '<span class="pager_1" onclick="javascript:showSection('+ (index+1)  +')">下一题</spab>';
+		
+		}else if(index==10){
+			html = html 
+					+ '<span class="pager_pre" onclick="javascript:showSection('+ (index-1)  +')">上一题</span>'
+					+ '<span class="pager_finish" onclick="javascript:caculateScore();showSection(100)">完成</spab>';
+		}else if(index==100){
+
+		}else {
+			html = html 
+					+ '<span class="pager_pre" onclick="javascript:showSection('+ (index-1)  +')">上一题</span>'
+					+ '<span class="pager_next" onclick="javascript:showSection('+ (index+1)  +')">下一题</span>';
+		}	
+		
+		
+		html = html + '</div>';
+
+		return html;		
+	}
+	
+
+
+
+	/*
+		根据题目数据生成题目
+	*/
+	function getQuestion(i,data){
+		
+		var html = '<div>'
+					+'<h1>'+data['subject']+'</h1>';
+	
+		if (data['type']==0){
+			html = html + '<ol id="q_'+i+'" class="q_list_text">';
+			$.each(data['options'],function(index,item){
+				html = html + '<li class="q_list_noselect" data-attach="'+i+'" data-index="'+index+'" onclick="answer('+data['type']+',this)">'+item['label']+'</li>' 
+			});
+			html = html + '</ol>';
+		}else if(data['type']==1){
+			html = html + '<div id="q_'+i+'" class="q_list_image">';
+			$.each(data['options'],function(index,item){
+				html = html + '<div class="q_list_imageitem" data-attach="'+i+'" data-index="'+index+'" onclick="answer('+data['type']+',this)">'
+							+ '<div><img src="'+item['pic']+'" style="width:100%"></div>'
+							+ '<div>'+item['label']+'</div>'
+							+ '<img class="q_list_imageicon" src="img/p0.png">'
+							+ '</div>' 
+			});
+			html = html + '</div>';
+		
+		}
+
+		html = html + '</div>';
+		return html;
+	}
+
+
+	/*
+		选择题目答案选项
+	*/
+	function answer(type,obj){
+		var attach= parseInt($(obj).attr("data-attach"));
+		var goal = parseInt($(obj).attr("data-index"));
+		
+		if (type==0) {
+			$("#q_"+attach).find("li").attr("class","q_list_noselect");
+			$(obj).attr("class","q_list_select");
+		}else if (type==1){
+			$("#q_"+attach).find("img.q_list_imageicon").attr("src","img/p0.png");
+			$(obj).find("img.q_list_imageicon").attr("src","img/p1.png");
+		}	
+		answerData[attach-1] = goal;	
+	}
+
+	/*
+		动态创建每个section的内容
+	*/
+	$("section").each(function(i,e){
+	
+		var id = parseInt($(e).attr("data-index")); 
+
+		//首页
+		if (id==0) {
+		
+			$('<div><img src="img/main.png" style="width:100%"></div>').appendTo(e);
+			$('<div style="margin:20px 0;width:100%;text-align:center"><span style="font-size:24px;color:#eb467a">想知道你的朋友有多了解你！</span><br><span>测测TA对你的了解程度</span></div>').appendTo(e);
+			$(getPager(id)).appendTo(e);	
+			$('<div style="margin:20px 0;width:100%;text-align:center">文字题选D，图片题选C</div>').appendTo(e);
+		
+		//尾页
+		}else if (id==100){
+			$(getBanner()).appendTo(e);
+			$('<div id="score"></div>').appendTo(e);
+		//普通页
+		}else {
+			$(getBanner()).appendTo(e);
+			$(getQuestion(id,examData[id-1])).appendTo(e);
+			$(getPager(id)).appendTo(e);	
+		}
+	});
+	
+	function showSection(index){
+		$("section").css("display","none");
+		$("#s_"+index).css("display","block");
+	}
+</script>
+
+</body>
+
+</html>
